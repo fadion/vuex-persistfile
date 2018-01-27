@@ -16,7 +16,7 @@
   },
   "main": "dist/vuex-persistfile.js",
   "scripts": {
-    "build": "webpack --optimize-minimize --display=detailed",
+    "build": "webpack",
     "test": "jest"
   },
   "engines": {
