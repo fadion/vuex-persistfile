@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import path from 'path'
-import VuexPersist from '../src/index'
-import MemoryDriver from '../src/MemoryDriver'
+const Vue = require('vue')
+const Vuex = require('vuex')
+const path = require('path')
+const VuexPersist = require('../lib/VuexPersist')
+const MemoryDriver = require('../lib/MemoryDriver')
 
 Vue.config.productionTip = false
 Vue.use(Vuex)

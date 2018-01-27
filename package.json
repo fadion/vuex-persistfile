@@ -1,6 +1,6 @@
 {
   "name": "vuex-persistfile",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Persist Vuex state in the filesystem for Electron",
   "author": "Fadion Dashi <jonidashi@gmail.com>",
   "license": "MIT",
@@ -14,9 +14,8 @@
     "type": "git",
     "url": "git+https://github.com/fadion/vuex-persistfile.git"
   },
-  "main": "lib/vuex-persistfile.js",
+  "main": "lib/VuexPersist.js",
   "scripts": {
-    "build": "webpack",
     "test": "jest"
   },
   "engines": {
@@ -26,16 +25,11 @@
     "deepmerge": "^2.0.1"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.1",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
     "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.8.0",
     "jest": "^22.1.4",
-    "webpack": "^3.10.0",
     "vue": "^2.0.0",
     "vuex": "^2.0.0"
   },
