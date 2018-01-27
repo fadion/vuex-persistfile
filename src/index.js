@@ -16,7 +16,7 @@ export default class VuexPersist {
       driver: null
     }, options)
 
-    // Path optioon is required, otherwise there's
+    // Path option is required, otherwise there's
     // no file to write to.
     if (!this.options.path) throw new Error('Path not set')
 
@@ -63,7 +63,7 @@ export default class VuexPersist {
   }
 
   /**
-   * Checks if a mutation is in the list of alowed
+   * Checks if a mutation is in the list of allowed
    * mutations.
    * @param {string} type
    * @returns {boolean}
