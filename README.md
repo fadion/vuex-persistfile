@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/dt/vuex-persistfile.svg)](https://www.npmjs.com/package/vuex-persistfile)
 [![Travis](https://img.shields.io/travis/fadion/vuex-persistfile.svg)](https://travis-ci.org/fadion/vuex-persistfile)
-[![Coveralls github](https://img.shields.io/coveralls/github/fadion/vuex-persistfile/master.svg)](https://coveralls.io/repos/github/fadion/vuex-persistfile/badge.svg?branch=master)
+[![Coveralls github](https://img.shields.io/coveralls/github/fadion/vuex-persistfile/master.svg)](https://coveralls.io/github/fadion/vuex-persistfile)
 [![license](https://img.shields.io/github/license/fadion/vuex-persistfile.svg)](https://github.com/fadion/vuex-persistfile/blob/master/LICENSE.md)
 
 A Vuex plugin that automatically loads and persists the state to the filesystem. It's built to work in a Node.js environment, but it's especially useful with tools such as Electron or NW.js.
