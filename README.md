@@ -86,10 +86,15 @@ const persist = new VuexPersist({
 })
 ```
 
-You may be keeping a list of mutation types as constants instead of passing them as plain strings. Those can be passed to `mutations` in the say way:
+You may be keeping a list of mutation types as constants instead of passing them as plain strings. Those can be passed to `mutations` in the same way:
 
 ```
-mutations: [types.addUser, types.updateUser]
+import * as types from 'store/types'
+
+const persist = new VuexPersist({
+  path: 'some/directory',
+  mutations: [types.addUser, types.updateUser]
+})
 ```
 
 ## Custom Driver
