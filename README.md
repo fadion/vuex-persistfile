@@ -24,6 +24,9 @@ yarn add vuex-persistfile
 First off, import it.
 
 ```javascript
+const VuexPersist = require('vuex-persistfile')
+
+// Or with ES6 modules
 import VuexPersist from 'vuex-persistfile'
 ```
 
@@ -74,13 +77,19 @@ const persist = new VuexPersist({
 
 ### mutations
 
-A whitelist of mutations you want to persist. Any other mutations that aren't preset in that list will be discarded and won't trigger a state save.
+A whitelist of mutations you want to persist. Any other mutations that aren't present in that list will be discarded and won't trigger a state save.
 
 ```javascript
 const persist = new VuexPersist({
   path: 'some/directory',
   mutations: ['addUser', 'updateUser']
 })
+```
+
+You may be keeping a list of mutation types as constants instead of passing them as plain strings. Those can be passed to `mutations` in the say way:
+
+```
+mutations: [types.addUser, types.updateUser]
 ```
 
 ## Custom Driver
