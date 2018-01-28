@@ -88,7 +88,7 @@ const persist = new VuexPersist({
 
 You may be keeping a list of mutation types as constants instead of passing them as plain strings. Those can be passed to `mutations` in the same way:
 
-```
+```javascript
 import * as types from 'store/types'
 
 const persist = new VuexPersist({
