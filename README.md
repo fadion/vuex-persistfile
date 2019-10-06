@@ -1,10 +1,5 @@
 # Vuex Persist File
 
-[![npm](https://img.shields.io/npm/dt/vuex-persistfile.svg)](https://www.npmjs.com/package/vuex-persistfile)
-[![Travis](https://img.shields.io/travis/fadion/vuex-persistfile.svg)](https://travis-ci.org/fadion/vuex-persistfile)
-[![Coveralls github](https://img.shields.io/coveralls/github/fadion/vuex-persistfile/master.svg)](https://coveralls.io/github/fadion/vuex-persistfile)
-[![license](https://img.shields.io/github/license/fadion/vuex-persistfile.svg)](https://github.com/fadion/vuex-persistfile/blob/master/LICENSE.md)
-
 A Vuex plugin that automatically loads and persists the state to the filesystem. It's built to work in a Node.js environment, but it's especially useful with tools such as Electron or NW.js.
 
 ## Installation
@@ -24,9 +19,6 @@ yarn add vuex-persistfile
 First off, import it.
 
 ```javascript
-const VuexPersist = require('vuex-persistfile')
-
-// Or with ES6 modules
 import VuexPersist from 'vuex-persistfile'
 ```
 
@@ -77,7 +69,7 @@ const persist = new VuexPersist({
 
 ### mutations
 
-A whitelist of mutations you want to persist. Any other mutations that aren't present in that list will be discarded and won't trigger a state save.
+A whitelist of mutations you want to persist. Any other mutations that aren't preset in that list will be discarded and won't trigger a state save.
 
 ```javascript
 const persist = new VuexPersist({
@@ -86,30 +78,23 @@ const persist = new VuexPersist({
 })
 ```
 
-You may be keeping a list of mutation types as constants instead of passing them as plain strings. Those can be passed to `mutations` in the same way:
-
-```javascript
-import * as types from './store/types'
-
-const persist = new VuexPersist({
-  path: 'some/directory',
-  mutations: [types.addUser, types.updateUser]
-})
-```
-
 ## Custom Driver
 
-Not sure why you'll need to override the default filesystem driver, but if you feel like it, you can easily create your own. Just create a class that exposes a `write` and `read` method. Something like the following:
+Not sure why you'll need to override the default filesystem driver, but if you feel like it, you can easily create your own. Just create a class that exposes a `write` ,`read`, and `exists` functions. Something like the following:
 
 ```javascript
 export default class MyAwesomeDriver {
   write(path, data) {
     // write it somewhere
   }
-  
+
   read(path) {
     // read it from somewhere
-  } 
+  }
+
+  exists(path) {
+    // check whether existing store is available
+  }
 }
 ```
 

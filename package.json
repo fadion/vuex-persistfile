@@ -22,7 +22,7 @@
     "node": ">=1.0.0"
   },
   "dependencies": {
-    "deepmerge": "^2.0.1"
+    "deepmerge": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^4.16.0",
