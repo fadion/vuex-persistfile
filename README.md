@@ -99,17 +99,21 @@ const persist = new VuexPersist({
 
 ## Custom Driver
 
-Not sure why you'll need to override the default filesystem driver, but if you feel like it, you can easily create your own. Just create a class that exposes a `write` and `read` method. Something like the following:
+Not sure why you'll need to override the default filesystem driver, but if you feel like it, you can easily create your own. Just create a class that exposes a `write` ,`read`, and `exists` functions. Something like the following:
 
 ```javascript
 export default class MyAwesomeDriver {
   write(path, data) {
     // write it somewhere
   }
-  
+
   read(path) {
     // read it from somewhere
-  } 
+  }
+
+  exists(path) {
+    // check whether existing store is available
+  }
 }
 ```
 
