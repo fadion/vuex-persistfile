@@ -41,18 +41,18 @@ test('JSONParser function is called when parsing', () => {
   let driver = new MemoryDriver()
   driver.write(file, JSON.stringify(actual))
 
-  const jsonParse = jest.fn();
+  const jsonParser = jest.fn();
 
   let store = new Vuex.Store({
     state: {},
     plugins: [new VuexPersist({
       path: '/test',
-      JSONParse: jsonParse,
+      JSONParser: jsonParser,
       driver
     }).subscribe()]
   })
 
-  expect(jsonParse).toHaveBeenCalled()
+  expect(jsonParser).toHaveBeenCalled()
 
 })
 
