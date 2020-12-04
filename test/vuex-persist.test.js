@@ -34,6 +34,27 @@ test('JSONParser function is setup correctly', () => {
   expect(vp.options.JSONParser).toBe(jsonParser)
 })
 
+test('JSONParser function is called when parsing', () => {
+
+  let actual = { a: 1, b: 2 }
+
+  let driver = new MemoryDriver()
+  driver.write(file, JSON.stringify(actual))
+
+  const jsonParse = jest.fn();
+
+  let store = new Vuex.Store({
+    state: {},
+    plugins: [new VuexPersist({
+      path: '/test',
+      JSONParse: jsonParse,
+      driver
+    }).subscribe()]
+  })
+
+  expect(jsonParse).toHaveBeenCalled()
+
+})
 
 test('state is replaced', () => {
   let expected = { a: 1, b: 2 }
