@@ -27,10 +27,11 @@ test('path is setup correctly', () => {
 test('JSONParser function is setup correctly', () => {
   let jsonParser = function() {};
   let vp = new VuexPersist({
+    path: '/test/path',
     JSONParser: jsonParser
   })
 
-  expect(vp.options.jsonParser).toBe(jsonParser)
+  expect(vp.options.JSONParser).toBe(jsonParser)
 })
 
 
