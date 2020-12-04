@@ -24,6 +24,16 @@ test('path is setup correctly', () => {
   expect(vp.options.path).toBe(path.join('/test/path', 'test.json'))
 })
 
+test('JSONParser function is setup correctly', () => {
+  let jsonParser = function() {};
+  let vp = new VuexPersist({
+    JSONParser: jsonParser
+  })
+
+  expect(vp.options.jsonParser).toBe(jsonParser)
+})
+
+
 test('state is replaced', () => {
   let expected = { a: 1, b: 2 }
   let driver = new MemoryDriver()
