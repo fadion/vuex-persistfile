@@ -60,6 +60,13 @@ Now you're all setup! Vuex state will be saved and hydrated automatically.
 
 The directory where the file will be saved and read from. In Electron it makes sense for it to be something like `app.getPath('userData')`, which points to the platform specific application data directory.
 
+```javascript
+const persist = new VuexPersist({
+  path: 'some/directory',
+  mutations: ['addUser', 'updateUser']
+})
+```
+
 ### file
 
 The file where to save the state in JSON form. It's by default set to `store.json`, so you'll rarely need to set it manually, but you have that option. Basically, the final path will be `path + file`.
@@ -75,11 +82,15 @@ One example of building this function is here: https://github.com/POFerro/json.d
 
 ```javascript
 const persist = new VuexPersist({
-  path: 'some/directory',
-  mutations: ['addUser', 'updateUser']
+  path: configDir,
+  JSONParser: function (key, value) {
+    const reISO = /^(\d{4})-(\d{2})-(\d{2})(T(\d{2}):(\d{2}):(\d{2}(?:\.{0,1}\d*))(?:Z|(\+|-)([\d|:]*))?)?$/;
+    if (reISO.exec(value))
+      return new Date(value);
+    return value;
+  }
 })
 ```
-
 
 ### reducer
 
