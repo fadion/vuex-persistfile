@@ -24,6 +24,30 @@ test('path is setup correctly', () => {
   expect(vp.options.path).toBe(path.join('/test/path', 'test.json'))
 })
 
+test('dailyBackup property is setup correctly', () => {
+  let vp = new VuexPersist({
+    path: '/test/path'
+  })
+
+  expect(vp.options.dailyBackup).toBe(false);
+
+
+  let vp2 = new VuexPersist({
+    dailyBackup: true,
+    path: '/test/path'
+  })
+
+  expect(vp2.options.dailyBackup).toBe(true);
+
+
+  let vp3 = new VuexPersist({
+    dailyBackup: false,
+    path: '/test/path'
+  })
+
+  expect(vp2.options.dailyBackup).toBe(false);
+})
+
 test('JSONParser function is setup correctly', () => {
   let jsonParser = function() {};
   let vp = new VuexPersist({

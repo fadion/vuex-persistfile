@@ -71,6 +71,9 @@ const persist = new VuexPersist({
 
 The file where to save the state in JSON form. It's by default set to `store.json`, so you'll rarely need to set it manually, but you have that option. Basically, the final path will be `path + file`.
 
+### dailyBackup
+
+Default value is false. If set to true, then the persist file creates a copy of the state per day in the same location, with the format 'yyyymmdd + filename'.
 
 ### JSONParser
 
