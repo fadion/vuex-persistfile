@@ -1,11 +1,9 @@
 # Vuex Persist File
 
-[![npm](https://img.shields.io/npm/dt/vuex-persistfile.svg)](https://www.npmjs.com/package/vuex-persistfile)
-[![Travis](https://img.shields.io/travis/fadion/vuex-persistfile.svg)](https://travis-ci.org/fadion/vuex-persistfile)
-[![Coveralls github](https://img.shields.io/coveralls/github/fadion/vuex-persistfile/master.svg)](https://coveralls.io/github/fadion/vuex-persistfile)
-[![license](https://img.shields.io/github/license/fadion/vuex-persistfile.svg)](https://github.com/fadion/vuex-persistfile/blob/master/LICENSE.md)
-
 A Vuex plugin that automatically loads and persists the state to the filesystem. It's built to work in a Node.js environment, but it's especially useful with tools such as Electron or NW.js.
+
+This is a fork of https://github.com/fadion/vuex-persistfile that adds support for cusotm JSON Parser function.
+
 
 ## Installation
 
@@ -41,10 +39,33 @@ const persist = new VuexPersist({
 Finally register it as a Vuex plugin.
 
 ```javascript
-const store = new Vuex.store({
-  // state, mutations, etc...
-  plugins: [persist.subscribe()]
+export const plugins = [persist.subscribe()];
+```
+
+
+You can use it in Vuex and Electron combined, including this code in the index.js:
+
+```javascript
+
+
+import VuexPersist from 'vuex-persistfile'
+
+import electron from 'electron'
+const configDir =  (electron.app || electron.remote.app).getPath('home');
+
+const persist = new VuexPersist({
+  path: configDir,
+  file: "persist.json",
+  dailyBackup: true,
+  hourlyBackup: true,
+  JSONParser: function (key, value) {
+    const reISO = /^(\d{4})-(\d{2})-(\d{2})(T(\d{2}):(\d{2}):(\d{2}(?:\.{0,1}\d*))(?:Z|(\+|-)([\d|:]*))?)?$/;
+    if (reISO.exec(value))
+      return new Date(value);
+    return value;
+  }
 })
+export const plugins = [persist.subscribe()];
 ```
 
 Now you're all setup! Vuex state will be saved and hydrated automatically.
@@ -55,9 +76,44 @@ Now you're all setup! Vuex state will be saved and hydrated automatically.
 
 The directory where the file will be saved and read from. In Electron it makes sense for it to be something like `app.getPath('userData')`, which points to the platform specific application data directory.
 
+```javascript
+const persist = new VuexPersist({
+  path: 'some/directory',
+  mutations: ['addUser', 'updateUser']
+})
+```
+
 ### file
 
 The file where to save the state in JSON form. It's by default set to `store.json`, so you'll rarely need to set it manually, but you have that option. Basically, the final path will be `path + file`.
+
+### dailyBackup
+
+Default value is false. If set to true, then the persist file creates a copy of the state per day in the same location, with the format 'yyyymmdd + filename'.
+
+### hourlyBackup
+
+Default value is false. If set to true, then the persist file creates a copy of the state per day in the same location, with the format 'yyyymmddhhmm + filename'.
+
+### JSONParser
+
+A function used as second parameter when calling to JSON.parse 
+This is useful for custom parsing of JSON, for example for expanding dates saved as strings into objects.
+
+One example of building this function is here: https://github.com/POFerro/json.date-extensions
+
+
+```javascript
+const persist = new VuexPersist({
+  path: configDir,
+  JSONParser: function (key, value) {
+    const reISO = /^(\d{4})-(\d{2})-(\d{2})(T(\d{2}):(\d{2}):(\d{2}(?:\.{0,1}\d*))(?:Z|(\+|-)([\d|:]*))?)?$/;
+    if (reISO.exec(value))
+      return new Date(value);
+    return value;
+  }
+})
+```
 
 ### reducer
 

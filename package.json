@@ -1,8 +1,8 @@
 {
   "name": "vuex-persistfile",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Persist Vuex state in the filesystem for Electron",
-  "author": "Fadion Dashi <jonidashi@gmail.com>",
+  "author": "David Diego based in work from Fadion Dashi <jonidashi@gmail.com>",
   "license": "MIT",
   "keywords": [
     "vue",
